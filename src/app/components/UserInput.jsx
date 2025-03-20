@@ -6,13 +6,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
-export default function UserInput({ setUserData, setFile, file }) {
+export default function UserInput({ setUserData, setFile, file, selectedLanguage, setPlaceLocation, setDiseaseName, placeLocation }) {
  
   const [preview, setPreview] = useState(null)
-  const [placeLocation, setPlaceLocation] = useState("");
-  const [diseaseName, setDiseaseName] = useState("");
 
- 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files?.[0] || null
     setFile(selectedFile)
@@ -46,10 +43,11 @@ export default function UserInput({ setUserData, setFile, file }) {
     e.preventDefault()
   }
 
-
   const handleAnalyze = () => {
     const formData = new FormData();
     formData.append("file", file);
+
+    let predictedDisease = null; // Store the prediction value
 
     // Step 1: Plant Analysis
     fetch("http://127.0.0.1:5000/predict", {
@@ -59,8 +57,9 @@ export default function UserInput({ setUserData, setFile, file }) {
         .then(response => response.json())
         .then(data => {
             console.log("Plant Analysis Data:", data);
-            setDiseaseName(data.prediction);
-            console.log("Detected Disease:", diseaseName);
+            predictedDisease = data.prediction; // Store the prediction
+            setDiseaseName(predictedDisease);
+            console.log("Detected Disease:", predictedDisease);
 
             // Step 2: Get Coordinates for the Location
             return fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(placeLocation)}&format=json`);
@@ -112,7 +111,8 @@ export default function UserInput({ setUserData, setFile, file }) {
                 averagedData.avgHumidity,
                 averagedData.avgTempMax,
                 averagedData.avgTempMin,
-                diseaseName
+                predictedDisease, // Use the stored prediction value
+                selectedLanguage
             );
         })
         .then(analysisResult => {
@@ -122,13 +122,14 @@ export default function UserInput({ setUserData, setFile, file }) {
         .catch(error => console.error("Error in the process:", error));
 };
 
-const analyzePlantDisease = async (placeLocation, avgHumidity, avgTempMax, avgTempMin, diseaseName) => {
+const analyzePlantDisease = async (placeLocation, avgHumidity, avgTempMax, avgTempMin, diseaseName, language) => {
   console.log("Analyzing plant disease for location:", placeLocation);
   const apiKey = "AIzaSyBWEhilw2TATGtVaBxVEDA5HlObyyJKtmQ";
   const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
   const prompt = `
   Analyze the given environmental data and plant disease information to provide insights on the disease's cause, prevention methods, and treatment options.
+  Please provide the response in ${language} language.
 
   Input Details:
   - Location Name: ${placeLocation}
@@ -140,9 +141,9 @@ const analyzePlantDisease = async (placeLocation, avgHumidity, avgTempMax, avgTe
   **Output Format (in JSON, without markdown formatting):**
   {
     "diseaseName": "<Disease Name>",
-    "cause": "<Detailed cause of the disease>",
-    "prevention": "<Prevention method>",
-    "treatment": "<Treatment method>",
+    "cause": "<Detailed cause of the disease in ${language}>",
+    "prevention": "<Prevention method in ${language}>",
+    "treatment": "<Treatment method in ${language}>",
     "location": "<location name from prompt>"
   }
 
@@ -185,8 +186,6 @@ const analyzePlantDisease = async (placeLocation, avgHumidity, avgTempMax, avgTe
       console.error("Error in fetching data:", error);
   }
 };
-
- 
 
   return (
     <div className="h-auto   flex items-start justify-center p-4">

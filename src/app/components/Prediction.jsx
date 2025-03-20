@@ -9,8 +9,29 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Printer, Share2, Download } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { useState, useEffect } from "react";
 
-export default function Prediction({ userData, file }) {
+export default function Prediction({ userData, file, onLanguageChange }) {
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
+
+  useEffect(() => {
+    // When language changes, trigger a new analysis
+    if (userData && Object.keys(userData).length > 0) {
+      onLanguageChange(selectedLanguage);
+    }
+  }, [selectedLanguage]);
+
+  const handleLanguageChange = (value) => {
+    setSelectedLanguage(value);
+  };
+
   // Sample data - in a real app, this would come from an API or props
   const result = {
     diseaseName: userData.diseaseName || "",
@@ -33,9 +54,24 @@ export default function Prediction({ userData, file }) {
     <div className="h-auto flex items-center justify-center p-4">
       <Card className="w-full shadow-lg border-0 rounded-3xl overflow-hidden">
         <CardContent className="p-6">
-          <h1 className="text-2xl font-bold text-green-800 mb-6">
-            Analysis Results
-          </h1>
+          <div className="flex justify-between items-center mb-6">
+            <h1 className="text-2xl font-bold text-green-800">
+              Analysis Results
+            </h1>
+            <Select value={selectedLanguage} onValueChange={handleLanguageChange}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Select Language" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="en">English</SelectItem>
+                <SelectItem value="es">Spanish</SelectItem>
+                <SelectItem value="fr">French</SelectItem>
+                <SelectItem value="de">German</SelectItem>
+                <SelectItem value="hi">Hindi</SelectItem>
+                <SelectItem value="bn">Bengali</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
           {/* Disease info section */}
           <div className="flex flex-col md:flex-row gap-6 mb-6">

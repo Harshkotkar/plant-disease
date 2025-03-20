@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AboutUs from "./components/AboutUs";
+import Translator from "./components/Translator";
 import React from "react";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
           {children}
           </React.Fragment>
           <AboutUs />
+          <Translator />
       </body>
     </html>
   );

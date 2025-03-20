@@ -5,7 +5,7 @@ const HowItWorks = () => {
     <div className="bg-green-50 py-8 sm:py-12 px-4">
       <h2 className="text-green-800 text-2xl sm:text-3xl font-semibold text-center mb-8 sm:mb-12">How It Works</h2>
       
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
         {/* Step 1 */}
         <div className="flex flex-col items-center text-center p-4">
           <div className="bg-green-100 hover:bg-green-200 p-4 sm:p-6 rounded-full mb-3 sm:mb-4 transform transition-all duration-300 hover:scale-110">
@@ -29,14 +29,25 @@ const HowItWorks = () => {
           <p className="text-gray-600 text-sm sm:text-base">Enter your location to help us provide region-specific recommendations for treatment.</p>
         </div>
 
-        {/* Step 3 */}
+        {/* Step 3 - New Language Selection Step */}
+        <div className="flex flex-col items-center text-center p-4">
+          <div className="bg-green-100 hover:bg-green-200 p-4 sm:p-6 rounded-full mb-3 sm:mb-4 transform transition-all duration-300 hover:scale-110">
+            <svg className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+            </svg>
+          </div>
+          <h3 className="text-lg sm:text-xl font-semibold mb-2">3. Select Language</h3>
+          <p className="text-gray-600 text-sm sm:text-base">Choose your preferred language to receive the analysis and recommendations in your local language.</p>
+        </div>
+
+        {/* Step 4 */}
         <div className="flex flex-col items-center text-center p-4">
           <div className="bg-green-100 hover:bg-green-200 p-4 sm:p-6 rounded-full mb-3 sm:mb-4 transform transition-all duration-300 hover:scale-110">
             <svg className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           </div>
-          <h3 className="text-lg sm:text-xl font-semibold mb-2">3. Get Analysis</h3>
+          <h3 className="text-lg sm:text-xl font-semibold mb-2">4. Get Analysis</h3>
           <p className="text-gray-600 text-sm sm:text-base">Receive detailed insights about the disease, its causes, prevention methods, and treatment options.</p>
         </div>
       </div>

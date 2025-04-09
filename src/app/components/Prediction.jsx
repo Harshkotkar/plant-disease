@@ -68,6 +68,7 @@ export default function Prediction({ userData, file, onLanguageChange }) {
                 <SelectItem value="fr">French</SelectItem>
                 <SelectItem value="de">German</SelectItem>
                 <SelectItem value="hi">Hindi</SelectItem>
+                <SelectItem value="mr">Marathi</SelectItem>
                 <SelectItem value="bn">Bengali</SelectItem>
               </SelectContent>
             </Select>

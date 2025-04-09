@@ -191,7 +191,7 @@ const analyzePlantDisease = async (placeLocation, avgHumidity, avgTempMax, avgTe
     <div className="h-auto   flex items-start justify-center p-4">
       <div className="w-full">
         <div className="mb-6">
-          <h1 className="text-5xl font-bold text-green-800 mb-2">Plant Disease Prediction</h1>
+          <h1 className="text-5xl font-bold text-green-800 mb-2">Plant Disease Diagnosis</h1>
           <p className="text-gray-600 text-lg">
             Get instant diagnosis for your plant's health issues. Upload an image of your diseased plant, provide your
             location, and receive professional recommendations for treatment.

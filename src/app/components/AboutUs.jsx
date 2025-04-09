@@ -56,7 +56,7 @@ const AboutUs = () => {
             </div>
             <h2 className="text-2xl font-bold text-white mb-4">Sustainable Solutions</h2>
             <p className="text-white">
-              We prioritize environmentally friendly solutions and integrated pest management techniques in our 
+              We prioritize user friendly solutions and integrated pest management techniques in our 
               recommendations.
             </p>
           </div>

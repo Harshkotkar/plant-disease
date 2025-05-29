@@ -1,0 +1,4 @@
+flask
+tensorflow
+openai
+pillow

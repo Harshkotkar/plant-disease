@@ -22,11 +22,17 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+.tailwind.config.js
+.tailwind.config.mjs
 
 .env*
 
 *.tsbuildinfo
 next-env.d.ts
+eslint.config.mjs
+tailwind.config.ts
+tailwind.config.js
 C:\Users\HP\Desktop\plant-disease\server\env
-server\model
-"C:\Users\HP\Desktop\plant-disease\server\openai_api.py"
+C:\Users\HP\Desktop\plant-disease\server\model
+C:\Users\HP\Desktop\plant-disease\server\templates
+C:\Users\HP\Desktop\plant-disease\server\static
